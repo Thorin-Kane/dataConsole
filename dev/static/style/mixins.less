@@ -1,0 +1,141 @@
+.flexbox(@dir)
+{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: @dir;
+    -webkit-flex-direction: @dir;
+}
+
+.flex(@prop1: 0; @prop2: 0; @prop3: auto)
+{
+    -webkit-box-flex:@prop1 @prop2 @prop3;
+    -moz-box-flex:@prop1 @prop2 @prop3;
+    -webkit-flex:@prop1 @prop2 @prop3;
+    -ms-flex:@prop1 @prop2 @prop3;
+    flex: @prop1 @prop2 @prop3;
+}
+
+.order(@prop)
+{
+    -webkit-box-ordinal-group:@prop;
+    -moz-box-ordinal-group:@prop;
+    -ms-flex-order:@prop;
+    -webkit-order:@prop;
+    order:@prop;
+}
+
+.max-width(@max-width)
+{
+    max-width: @max-width;
+    margin: 0 auto;
+}
+
+.max-height(@max-height)
+{
+    max-height: @max-height;
+    margin: 0 auto;
+}
+
+.f1()
+{
+    font-size: 48px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    color: @Gray3;
+}
+
+.f2()
+{
+    font-size: 36px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    color: @Gray3;
+}
+
+.f3()
+{
+    font-size: 24px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    color: @Gray3;
+}
+
+.f35()
+{
+    font-size: 24px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 200;
+    color: @Gray3;
+}
+
+//italics
+.f4()
+{
+    font-size: 18px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    color: @Gray3;
+}
+
+//link
+.f5()
+{
+    font-size: 18px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    color: @blGray1;
+}
+
+._button()
+{
+     -webkit-appearance: none;
+      border: solid 1px @Gray1;
+      border-radius: 4px;
+      background-color: @Blue3;
+      color: @Gray1;
+      font-size: 16px;
+      width: 200px;
+      height: 36px;
+}
+
+.button()
+{
+    ._button;
+}
+
+.link
+{
+    .f5;
+    font-size: 24px;
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+}
+._input()
+{
+    -webkit-appearance: none;
+    border: 0;
+    border-bottom: solid 2px @Blue3;
+    background: transparent;
+    outline: none;
+    height: 36px;
+    width: 200px;
+    font-size: 18px;
+    color: @Gray3;
+
+    &::-webkit-input-placeholder 
+    {
+        color: @Gray2;
+        font-size: 18px;
+    }
+}
+
+.hover()
+{
+    transform: scale(1.1);
+}

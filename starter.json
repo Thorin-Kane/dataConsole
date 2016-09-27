@@ -1,0 +1,69 @@
+[
+    //schema
+    {
+        "name": "eventSchema",
+        "properties": [
+            {
+                "field": "title",
+                "label": "Title",
+                "type": "String"
+            },
+            {
+                "field": "startDate",
+                "label": "Start Date",
+                "type": "Date"
+            },
+            {
+                "field": "endDate",
+                "label": "End Date",
+                "type": "Date"
+            },
+            {
+                "field": "startTime",
+                "label": "Start Time",
+                "type": "String"
+            },
+            {
+                "field": "endTime",
+                "label": "End Time",
+                "type": "String"
+            },
+            {
+                "field": "building",
+                "label": "Building",
+                "type": "String"
+            },
+            {
+                "field": "room",
+                "label": "Room",
+                "type": "String"
+            },
+            {
+                "field": "presenter",
+                "label": "Presenter",
+                "type": "String"
+            },
+            {
+                "field": "description",
+                "label": "Description",
+                "type": "String"
+            },
+            {
+                "field": "backgroundImage",
+                "label": "Background Image",
+                "type": "String"
+            },
+            {
+                "field": "PrimaryColor",
+                "label": "Primary Color",
+                "type": "String"
+            },
+            {
+                "field": "secondaryColor",
+                "label": "Secondary Color",
+                "type": "String"
+            }
+        ],
+        "data": []
+    }
+]

@@ -1,0 +1,58 @@
+{
+  "name": "dpux-console",
+  "version": "1.0.0",
+  "description": "an abstract console creator for syncd databases",
+  "license": "MIT",
+  "repository": "DPUX-CalendarConsole",
+  "README": "",
+  "author": {
+    "name": "Kane, Thorin",
+    "email": "thorkane@amazon.com",
+    "url": "null"
+  },
+  "scripts": {
+    "gulp": "gulp default"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "browserify": "^13.0.1",
+    "checksum": "^0.1.1",
+    "connect-busboy": "0.0.2",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "fs": "0.0.2",
+    "gulp": "^3.9.1",
+    "jquery": "^3.1.0",
+    "less": "^2.7.1",
+    "mongodb": "^2.2.1",
+    "mongoose": "^4.5.4",
+    "node": "0.0.0",
+    "path": "^0.12.7",
+    "q": "^1.4.1",
+    "react": "^15.1.0",
+    "react-addons-linked-state-mixin": "^15.2.1",
+    "react-bootstrap": "^0.29.5",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-less": "^3.0.5",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify": "0.0.14",
+    "gulp-util": "^3.0.7",
+    "ncp": "^2.0.0",
+    "nodemon": "^1.9.2",
+    "require-globify": "^1.3.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

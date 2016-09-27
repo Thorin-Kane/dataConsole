@@ -1,0 +1,184 @@
+@import "vars";
+@import "mixins";
+
+html
+{
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body
+{
+    height: 100%;
+    width: 100%;
+    background: @Gray0;
+    margin: 0;
+    overflow: auto;
+}
+
+//reactroot container
+.container
+{
+    height: 100%;
+}
+
+#content
+{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-width: 600px;
+}
+
+h1, h2, h3, h4, h5, h6, span, a
+{
+    .f3;
+    margin: 0;
+}
+
+//header
+.header
+{
+    .flexbox(row);
+    z-index: 100;
+    align-items: center;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: @header-height;
+    background: @Gray5;
+    margin: 0 -@margin;
+    padding: 0 @margin * 2;
+
+    .link-home
+    {
+        position: relative;
+        width: 100px;
+        height: 100%;
+        background: @Gray5;
+        border-bottom: 3px solid @Blue1;
+
+        .link
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+
+            &-text
+            {
+                .f3;
+                color: @Gray1;
+                position: absolute;
+                top: 30%;
+                left: 20%;
+                z-index: 2;
+
+            }
+        }
+    }
+}
+
+//event tiles
+.ev-tile-row
+{
+    .flexbox(row);
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.ev-container
+{
+    padding: @header-height + 4px 0;
+    overflow-y: auto;
+}
+
+.ev-main-tile
+{
+    .flexbox(column);
+    .flex(1;1;auto);
+    transition: all .2s ease-in-out;
+    justify-content: space-between;
+    position: relative;
+    max-width: 400px;
+    height: 300px;
+    padding: @margin;
+    background: @Gray1;
+    box-shadow: -1px 1px @Gray1;
+    border-radius: 4px;
+    margin: @sm-spacing / 4;
+
+    &:hover
+    {
+        .hover;
+    }
+}
+
+.ev-main-content
+{
+    .flexbox(column);
+    .flex(0;0;80%);
+    justify-content: space-between;
+}
+.ev-region
+{
+    &-title
+    {
+        margin-bottom: @rg-spacing * 2;
+
+        .ev
+        {
+            margin-bottom: @sm-spacing/2;
+
+            &-date
+            {
+                .f1;
+            }
+
+            &-title
+            {
+                .f2;
+            }
+        }
+    }
+
+    &-location
+    {
+        .ev
+        {
+            &-building
+            {
+                .f35;
+            }
+
+            &-room
+            {
+                .f2;
+            }
+        }
+    }
+
+    &-footer
+    {
+        .flexbox(row);
+        height: 24px;
+        margin: 0 -@rg-spacing;
+        border-top: 1px solid @Gray3;
+
+       .ev-actions
+       {
+        display: none;
+       }
+    }
+}
+
+.ev-btn-remove
+{
+    ._button;
+}
