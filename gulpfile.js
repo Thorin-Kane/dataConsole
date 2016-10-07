@@ -142,7 +142,7 @@ gulp.task('watch-js', ['default'], function () {
 });
 gulp.task('start', function() {
     nodemon({
-        script: 'server.js',
+        script: 'schema_server.js',
         ext: 'js html ejs less'
 
     })

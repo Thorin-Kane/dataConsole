@@ -235,7 +235,7 @@ router.route('/image')
                 res.status(200).json(image);
             }
         })
-        
+
     });
 app.use('/api', router);
 
