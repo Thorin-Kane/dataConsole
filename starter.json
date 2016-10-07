@@ -1,5 +1,8 @@
+//Each Document will have
+//a properties and data array
+//a unique id and name
 [
-    //schema
+    // example schema
     {
         "name": "eventSchema",
         "properties": [
