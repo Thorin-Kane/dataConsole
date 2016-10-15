@@ -4,15 +4,15 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
-var GroupContainer = require('../containers/GroupContainer');
-var EventContainer = require('../containers/EventContainer');
+var UploaderContainer = require('../containers/UploaderContainer');
+var ImageContainer = require('../containers/ImageContainer');
 var Home = require('../components/Home');
 
 var routes = (
   <Router history={hashHistory}>
       <Route path='/' component={Home}>
-        <IndexRoute component={GroupContainer}/>
-        <Route path='/events/:group' component={EventContainer}/>
+        <IndexRoute component={ImageContainer}/>
+        <Route path='/events/:group' component={UploaderContainer}/>
       </Route>
   </Router>
 );

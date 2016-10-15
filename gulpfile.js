@@ -137,6 +137,9 @@ gulp.task('watch-less', ['compile'], function () {
     livereload.listen();
     gulp.watch('dev/static/style/*.less', ['compile']);
 });
+gulp.task('watch-jsx', ['default'], function () {
+    return gulp.watch('dev/static/js/**/*.jsx', ['default'])
+});
 gulp.task('watch-js', ['default'], function () {
     return gulp.watch('dev/static/js/**/*.js', ['default'])
 });

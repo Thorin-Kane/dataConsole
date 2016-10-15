@@ -1,10 +1,7 @@
 var mongoClient = require('mongodb').MongoClient;
 
-//mongodb url
-var url = 'mongodb://localhost:27017/test';
-
 var state = {
-  db: null,
+    db: null,
 }
 
 exports.connect = function(url, done) {

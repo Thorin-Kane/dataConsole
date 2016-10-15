@@ -43,18 +43,13 @@ router.use(function (err, req, res, next) {
 
 router.route('/data')
     .get(function (req, res) {
-        // EventGroup.findAll(function (err, eventgroup) {
-        //     if(err) {
-        //         throw err
-        //     } else {
-        //         res.status(200).json(eventgroup);
-        //     }
-        // });
-        EventGroup.find({})
-            .populate('backgroundImage')
-            .exec(function(err, eventgroup) {
+        EventGroup.findAll(function (err, eventgroup) {
+            if(err) {
+                throw err
+            } else {
                 res.status(200).json(eventgroup);
-            })
+            }
+        });
     })
     .post(function (req, res) {
         EventGroup.create(req.body, function (err, eventgroup) {
