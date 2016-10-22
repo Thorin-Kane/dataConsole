@@ -61,14 +61,14 @@ h1, h2, h3, h4, h5, h6, span, a
     .link-home
     {
         position: relative;
-        width: 100px;
+        width: 150px;
         height: 100%;
         background: @Gray5;
-        border-bottom: 3px solid @Blue1;
 
         .link
         {
             position: absolute;
+            z-index: 3;
             top: 0;
             right: 0;
             left: 0;
@@ -83,6 +83,11 @@ h1, h2, h3, h4, h5, h6, span, a
                 left: 20%;
                 z-index: 2;
 
+            }
+
+            &.active
+            {
+                border-bottom: 3px solid @Blue1;
             }
         }
     }
@@ -284,6 +289,7 @@ h1, h2, h3, h4, h5, h6, span, a
     }
 }
 
+//image library
 .test-image
 {
     width: 600px;

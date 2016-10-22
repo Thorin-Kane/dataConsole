@@ -12,6 +12,7 @@ var routes = (
   <Router history={hashHistory}>
       <Route path='/' component={Home}>
         <IndexRoute component={ImageContainer}/>
+        <Route path='/uploader' component={UploaderContainer} />
         <Route path='/events/:group' component={UploaderContainer}/>
       </Route>
   </Router>
