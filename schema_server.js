@@ -35,6 +35,7 @@ db.connect(mongoUrl, function (err, db) {
         process.exit(1);
     }
 });
+
 router.route('/upload')
     .post(function (req, res) {
         var form = new formidable.IncomingForm();
@@ -55,6 +56,15 @@ router.route('/upload')
 
         form.parse(req);
     });
+
+router.route('/upload/:name')
+    .delete(function(req, res) {
+    var imagePath = path.join(__dirname, '/uploads/' + req.params.name);
+
+    fs.unlink(imagePath, function() {
+        res.status(204)
+    });
+});
 
 // main page, rendered for all routes
 app.route('*')

@@ -20,6 +20,21 @@ var bases = {
     dist: 'dist'
 };
 
+var mongo = function () {
+    var deferred = q.defer();
+    console.log('>> mongo starting');
+    exec('sudo mongod --dbpath ./data/db/', function(err) {
+        if(err) {
+            console.log(err);
+            deferred.reject();
+            return;
+        }
+        deferred.resolve();
+        console.log('>> mongo started, waiting for connections');
+    });
+    return deferred.promise;
+};
+
 var bundle = function bundle () {
         var deferred = q.defer();
 
@@ -146,7 +161,7 @@ gulp.task('watch-js', ['default'], function () {
 gulp.task('start', function() {
     nodemon({
         script: 'schema_server.js',
-        ext: 'js html ejs less'
+        ext: 'js html ejs'
 
     })
     .on('restart', function () {
@@ -163,6 +178,8 @@ gulp.task('clean', function() {
             console.log('>> /dist cleaned');
         });
 });
+
+gulp.task('mongo', mongo);
 
 gulp.task('recreate', recreate);
 

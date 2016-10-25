@@ -19,7 +19,7 @@ router.delete('/images/:id', function(req, res) {
             res.status(204);
         }
     })
-})
+});
 
 router.get('/images', function(req, res) {
     images.all(function(err, docs) {
