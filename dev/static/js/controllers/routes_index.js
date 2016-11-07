@@ -1,5 +1,6 @@
-var router = require('../../../../express_router');
+import router from '../../../../express_router';
+import images from './images';
 
-router.use('/', require('./images'))
+router.use('/', images);
 
-module.exports = router;
+export default router;

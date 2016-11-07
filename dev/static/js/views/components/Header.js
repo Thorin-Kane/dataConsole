@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
-class Home extends React.Component {
+class Header extends React.Component {
     render() {
         return (
             <div className="container" >
@@ -15,10 +15,10 @@ class Home extends React.Component {
                         <span className="link-text"> Uploader </span>
                     </div>
                 </div>
-                {React.cloneElement(this.props.children, this.props)}
+                {this.props.children}
             </div>
         )
     }
 };
 
-export default Home;
+export default Header;
