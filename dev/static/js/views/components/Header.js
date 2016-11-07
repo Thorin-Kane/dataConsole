@@ -1,10 +1,8 @@
-var React = require('react'),
-    ReactRouter = require('react-router'),
-    IndexLink = ReactRouter.IndexLink;
-    Link = ReactRouter.Link;
+import React from 'react';
+import { Link, IndexLink } from 'react-router';
 
-var Home = React.createClass({
-    render: function() {
+class Home extends React.Component {
+    render() {
         return (
             <div className="container" >
                 <div className="header">
@@ -17,10 +15,10 @@ var Home = React.createClass({
                         <span className="link-text"> Uploader </span>
                     </div>
                 </div>
-                {this.props.children}
+                {React.cloneElement(this.props.children, this.props)}
             </div>
         )
     }
-});
+};
 
-module.exports = Home;
+export default Home;

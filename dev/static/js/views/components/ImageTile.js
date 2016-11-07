@@ -1,41 +1,35 @@
-var React = require('react'),
-    PropTypes = React.PropTypes;
+import React from  'react';
 
-function ImageTile (props) {
-    var bgImage = {
-        backgroundImage: 'url(' + props.image.url + ')'
+class ImageLibrary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={};
+
+        this._renderImageTile = this._renderImageTile.bind(this);
     }
 
-    return(
-        <div className="image-tile">
-            <img className="image-tile-content" src={props.image.url}/>
-            <div className="remove-container">
-                <span id = "remove-icon" className="remove image-tile-remove" onClick={props.handleRemove}> </span>
-            </div>
-        </div>
-    )
-};
+    _handleRemove() {
+        //redux will handle this state
+    }
 
-function ImageRow (props) {
-    return(
-        <div className="image-tile-row">
-            {props.images.map(function(image, i) {
-                return (
-                   <ImageTile image={image} key={image._id} handleRemove={props.handleRemove.bind(null, image)}/>
-                )
-            })}
-        </div>
-    )
-};
-
-var ImageLibrary = React.createClass({
-    render: function() {
-        return (
-            <div>
-                <ImageRow images={this.props.images} handleRemove={this.props.handleRemove}/>
+    _renderImageTile(image, i) {
+       return (
+            <div className="image-tile" key={i}>
+                <img className="image-tile-content" src={image.url}/>
+                <div className="remove-container">
+                    <span id = "remove-icon" className="remove image-tile-remove"> </span>
+                </div>
             </div>
         )
     }
-});
 
-module.exports = ImageLibrary;
+    render() {
+        return (
+            <div className='test-library'>
+                
+            </div>
+        )
+    }
+};
+
+export default ImageLibrary;

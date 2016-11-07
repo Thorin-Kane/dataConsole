@@ -42,7 +42,7 @@ var bundle = function bundle () {
         browserify({
                 entries: ['dev/static/js/index.js']
             })
-            .transform(babelify, {presets: ['react']})
+            .transform(babelify, {presets: ['react', 'es2015']})
             .transform(requireGlobify)
             .bundle()
             .pipe(source('index-bundled.js'))
@@ -180,8 +180,6 @@ gulp.task('clean', function() {
 });
 
 gulp.task('mongo', mongo);
-
-gulp.task('recreate', recreate);
 
 gulp.task('bundle', bundle);
 
