@@ -6,7 +6,7 @@ var express = require('express'),
     fs = require('fs'),
     formidable = require('formidable'),
     bodyParser = require('body-parser'),
-    db = require('./dev/static/js/db/database');
+    db = require('./dev/js/db/database');
 
 //server port
 var HTTP_PORT = 8080;
@@ -19,11 +19,12 @@ var apiUrl = 'http://localhost:8080/api/v1';
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.use('/static' , express.static(__dirname + '/dist/static/'));
+app.use('/static' , express.static(__dirname + '/dist/'));
+app.use('/static', express.static(__dirname + '/dev/resources'));
 app.use('/images', express.static('uploads'));
 
 //bring in routes file with all controllers
-var router = require('./dev/static/js/controllers/routes_index');
+var router = require('./dev/js/controllers/routes_index');
 app.use('/api/v1', router);
 
 //Connect to mongo instance
@@ -69,7 +70,7 @@ router.route('/upload/:name')
 // main page, rendered for all routes
 app.route('*')
     .get(function (req, res) {
-    res.render(__dirname + '/dist/index.ejs');
+    res.render(__dirname + '/index.ejs');
 });
 
 app.listen(HTTP_PORT, function() {

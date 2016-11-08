@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
-    clean = require('gulp-clean'),
     gutil = require('gulp-util'),
+    gchange = require('gulp-change'),
     browserify = require('browserify'),
     babelify = require('babelify'),
     requireGlobify = require('require-globify'),
@@ -12,81 +12,102 @@ var gulp = require('gulp'),
     fs = require('fs'),
     exec = require('child_process').exec,
     q = require('q'),
+    nodemon = require('gulp-nodemon'),
+    plumber = require('gulp-plumber'),
     livereload = require('gulp-livereload'),
-    nodemon=require('nodemon');
+    tap = require('gulp-tap');
 
-var bases = {
-    dev: 'dev',
-    dist: 'dist'
-};
-
-var mongo = function () {
-    var deferred = q.defer();
-    console.log('>> mongo starting');
-    exec('sudo mongod --dbpath ./data/db/', function(err) {
-        if(err) {
-            console.log(err);
-            deferred.reject();
-            return;
-        }
-        deferred.resolve();
-        console.log('>> mongo started, waiting for connections');
-    });
-    return deferred.promise;
-};
-
-var bundle = function bundle () {
-        var deferred = q.defer();
-
-        console.log('>> js bundling...');
-        browserify({
-                entries: ['dev/static/js/index.js']
-            })
-            .transform(babelify, {presets: ['es2015', 'babel-preset-stage-0','react']})
-            .transform(requireGlobify)
-            .bundle()
-            .pipe(source('index-bundled.js'))
-            .pipe(buffer())
-            .pipe(minify())
-            .pipe(gulp.dest('dist/static/js'))
-            .on('error', function (err) {
-                console.log('Error bundling js:', err);
-            })
-            .on('end', function () {
-                console.log('>> js bundled');
-                exec('rm dist/static/js/index.js', function (err) {
-                    if (err) {
-                        console.log('Error removing unbundled index file:', err);
-                        deferred.reject();
-                        return;
-                    }
-                    deferred.resolve();
-                });
-            });
-
-        return deferred.promise;
+var paths = {
+    dev: {
+        root: 'dev',
+        less: 'dev/style',
+        js: 'dev/js',
     },
-    recreate = function (path) {
+    dist: 'dist',
+    lessFile: 'app.less',
+    jsFile: 'index.js',
+    indexFile: 'index.ejs'
+}
+
+var Bundler = function bundle () {
+
+        this.bundle = function () {
+            var _this = this;
+
+            gutil.log(gutil.colors.blue('>> js bundling...'));
+
+            return gulp.src(paths.dev.js + '/' + paths.jsFile, {read: false})
+                .pipe(plumber())
+                .pipe(tap(function (file) {
+                    var d = require('domain').create()
+
+                    d.on('error', function (err) {
+                        gutil.beep();
+                        gutil.log(gutil.colors.red("Browserify compile error:"), err.message, "\n\t", gutil.colors.cyan("in file"), file.path);
+                        //this.emit('end');
+                    });
+                    d.run(function () {
+                        file.contents = browserify({
+                            entries: [file.path]
+                        })
+                        .transform(babelify, {presets: ['es2015', 'babel-preset-stage-0', 'react']})
+                        .transform(requireGlobify)
+                        .bundle()
+                        .pipe(source('app-bundled.js'))
+                        .pipe(buffer())
+                        .pipe(minify())
+                        .pipe(gulp.dest(paths.dist))
+                        .pipe(livereload())
+                        .on('end', function () {
+                            _this.onEnd.call();
+                            gutil.log(gutil.colors.green('>> js bundled'));
+                        });
+                    });
+                }));
+        };
+
+        this.onEnd = function () {
+            // Noop
+        };
+
+        this.promise = function () {
+            var bundler = new Bundler();
+                deferred = q.defer();
+
+            bundler.onEnd = function () {
+                deferred.resolve();
+            };
+
+            bundler.bundle();
+
+            return deferred.promise;
+        };
+    },
+    empty = function (dir) {
         var deferred = q.defer();
-        exec('mkdir -p ' + path, function (err, stdout, stderr) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            deferred.resolve();
-            console.log('>> /dist recreated');
-        });
+
+        try {
+            exec('rm -r ' + __dirname + '/' + dir + '/*', function (err, stdout, stderr) {
+                if (err) {
+                    gutil.log(err);
+                }
+                gutil.log(gutil.colors.green('>> /dist cleaned'));
+                deferred.resolve();
+            });
+        } catch (err) {
+            gutil.log('MyError:', err);
+        }
+
         return deferred.promise;
     },
     move =  function () {
         var deferred = q.defer(),
-            DEV = 'dev/',
-            DIST = 'dist/',
             copy = function (dir) {
                 var rDef = q.defer();
-                ncp(DEV + dir, DIST + dir, function (err) {
+                console.log(paths.dev.root + '/' + dir, paths.dist + '/' + dir);
+                ncp(paths.dev.root + '/' + dir, paths.dist + '/' + dir, function (err) {
                     if (err) {
-                        console.log('copy error: ', err);
+                        gutil.log('copy error: ', err);
                         rDef.reject();
                         return;
                     }
@@ -95,29 +116,10 @@ var bundle = function bundle () {
                 return rDef.promise;
             };
 
-        copy('static')
+        copy('resources')
             .then(function () {
-                console.log('>> resources copied');
-                exec('rm dist/static/style/*', function (err, stdout, stderr) {
-                    if (err) {
-                        console.log('error removing extraneous less files:', err);
-                        deferred.reject();
-                        return;
-                    }
-                    console.log('>> extraneous less files removed');
-                    exec('rm -r dist/static/js/*/', function (err, stdout, stderr) {
-                        if (err) {
-                            console.log('error removing extraneous js files:', err);
-                            deferred.reject();
-                            return;
-                        }
-                        console.log('>> extraneous js files removed');
-                        copy('index.ejs').then(function () {
-                            console.log('>> index.ejs copied');
-                            deferred.resolve();
-                        });
-                    });
-                });
+                gutil.log(gutil.colors.green('>> resources copied'));
+                deferred.resolve();
             });
 
         return deferred.promise;
@@ -125,18 +127,43 @@ var bundle = function bundle () {
     compile = function () {
         var deferred = q.defer();
 
-        console.log('>> less compiling...');
-        gulp.src('dev/static/style/app.less')
+        gutil.log(gutil.colors.blue('>> less compiling...'));
+        gulp.src(paths.dev.less + '/' + paths.lessFile)
+            .pipe(plumber({
+                errorHandler: function (err) {
+                    gutil.beep();
+                    this.emit('end')
+                }
+            }))
             .pipe(gless())
-            .pipe(gulp.dest('dist/static/style'))
+            .pipe(gulp.dest(paths.dist))
             .pipe(livereload())
             .on('error', function (err) {
-                console.log('Error compiling less:', err);
+                gutil.log('Error compiling less:', err);
                 deferred.reject();
             })
             .on('end', function () {
-                console.log('>> less compiled');
+                gutil.log(gutil.colors.green('>> less compiled'));
                 deferred.resolve();
+            });
+
+        return deferred.promise;
+    },
+    changeContent = function () {
+        var deferred = q.defer(),
+            perform = function (content) {
+                gutil.log(content);
+                return content.replace(/app-bundled.js/, 'app-bundled-min.js').replace('<script src="http://localhost:35729/livereload.js?snipver=1"></script>', '');
+            };
+
+        gulp.src(paths.indexFile)
+            .pipe(gchange(perform))
+            .pipe(gulp.dest(paths.dist))
+            .on('end', function () {
+                deferred.resolve();
+            })
+            .on('error', function () {
+                deferred.reject();
             });
 
         return deferred.promise;
@@ -145,50 +172,59 @@ var bundle = function bundle () {
 //////////////////////
 // TASKS
 //////////////////////
-
 gulp.task('compile', compile);
+gulp.task('bundle', function () {
+    var bundler = new Bundler();
+
+    return bundler.bundle();
+});
 gulp.task('move', move);
 gulp.task('watch-less', ['compile'], function () {
     livereload.listen();
-    gulp.watch('dev/static/style/*.less', ['compile']);
+    return gulp.watch(paths.dev.less + '/**/*.less', ['compile']);
 });
-gulp.task('watch-jsx', ['default'], function () {
-    return gulp.watch('dev/static/js/**/*.jsx', ['default'])
+gulp.task('watch-js', ['bundle'], function () {
+    livereload.listen();
+    return gulp.watch(paths.dev.js + '/**/*.js', ['bundle']);
 });
-gulp.task('watch-js', ['default'], function () {
-    return gulp.watch('dev/static/js/**/*.js', ['default'])
-});
-gulp.task('start', function() {
-    nodemon({
-        script: 'schema_server.js',
-        ext: 'js html ejs'
 
-    })
-    .on('restart', function () {
-        console.log('restarted!');
-    })
+gulp.task('watch', ['watch-less', 'watch-js']);
+
+gulp.task('serve', function () {
+    return nodemon({
+        script: 'schema_server.js',
+        env: {
+            'NODE_ENV': 'development'
+        },
+        ignore: [paths.dist, paths.dev.root]
+    });
 });
-gulp.task('clean', function() {
-    return gulp.src(bases.dist)
-        .pipe(clean())
-        .on('error', function (err) {
-            console.log('error cleaning /dist: ', err)
-        })
-        .on('end', function () {
-            console.log('>> /dist cleaned');
+
+gulp.task('dev', ['serve', 'watch']);
+
+gulp.task('dist', function () {
+    var bundler = new Bundler();
+
+    return empty('src')
+        .then(move)
+        .then(bundler.promise)
+        .then(compile)
+        .then(changeContent)
+        .then(function () {
+            exec('rm -r src/app-bundled.js', function (e, out, err) {
+                if (e) {
+                    gutil.log(e);
+                    return;
+                }
+            });
         });
 });
 
-gulp.task('mongo', mongo);
+gulp.task('default', function () {
+    var bundler = new Bundler();
 
-gulp.task('recreate', recreate);
-
-gulp.task('bundle', bundle);
-
-// Does it all
-gulp.task('default', ['clean'], function () {
-    return recreate('dist')
+    return empty('src')
         .then(move)
-        .then(bundle)
+        .then(bundler.promise)
         .then(compile);
 });

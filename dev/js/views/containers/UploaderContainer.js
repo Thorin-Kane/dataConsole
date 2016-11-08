@@ -1,5 +1,4 @@
-var React = require('react'),
-    PropTypes = React.PropTypes;
+import React from 'react';
 
 Image = function(name) {
     this.name = name;
@@ -8,26 +7,30 @@ Image = function(name) {
     this.dateAdded = Date.now();
 };
 
-var UploaderContainer = React.createClass({
-    getInitialState: function() {
-        return {
-            isLoading: true
-        }
-    },
-    handleClick: function(e) {
+export default class UploaderContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={};
+
+        this._handleClick = this._handleClick.bind(this);
+        this._handleUpload = this._handleUpload.bind(this);
+    }
+
+    _handleClick(e) {
         $('#upload-input').click();
         $('.progress-bar').text('0%');
         $('.progess-bar').width('0%');
-    },
-    handleUpload: function(e) {
-        var files = Array.prototype.slice.call(e.target.files);
-        var mongoFileObjects = [];
+    }
+
+    _handleUpload(e) {
+        const files = Array.prototype.slice.call(e.target.files);
+        let mongoFileObjects = [];
 
         if(files.length > 0) {
-            var formData = new FormData();
+            const formData = new FormData();
 
-            for( var i = 0; i < files.length; i++) {
-                var file = files[i];
+            for(var i of files) {
+                const file = files[i];
                 imageFile = new Image(file.name);
                 mongoFileObjects.push(imageFile);
                 formData.append('uploads[]', file, file.name);
@@ -82,8 +85,9 @@ var UploaderContainer = React.createClass({
             return xhr;
             }
         });
-    },
-    render: function () {
+    }
+
+    render() {
         return(
             <div className="upload-background">
                 <div className="upload-container">
@@ -102,7 +106,4 @@ var UploaderContainer = React.createClass({
             </div>
         )
     }
-
-});
-
-module.exports = UploaderContainer;
+}

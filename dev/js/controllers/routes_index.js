@@ -1,4 +1,4 @@
-var router = require('../../../../express_router');
+var router = require('../../../express_router');
 
 router.use('/', require('./images'))
 

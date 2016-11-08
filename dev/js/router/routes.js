@@ -2,9 +2,10 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
-import ImageContainer from'../containers/ImageContainer';
-import Home from'../components/Home';
-import MainContainer from '../containers/MainContainer';
+import Home from'../views/components/Home';
+import ImageContainer from'../views/containers/ImageContainer';
+import UploaderContainer from '../views/containers/UploaderContainer';
+import MainContainer from '../views/containers/MainContainer';
 
 export default class routes extends React.Component {
     constructor(props) {
@@ -16,6 +17,7 @@ export default class routes extends React.Component {
             <Router history={browserHistory}>
                 <Route path='/' component={Home}>
                     <IndexRoute component={MainContainer} />
+                    <Route path='/upload' component={UploaderContainer} />
                     <Route path='/assets' component={ImageContainer} />
                 </Route>
             </Router>

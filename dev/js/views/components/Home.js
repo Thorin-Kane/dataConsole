@@ -12,7 +12,7 @@ export default class Home extends React.Component {
                         <span className="link-text"> Home </span>
                     </div>
                     <div className="link-home">
-                        <Link to="/uploader" className="link" activeClassName="active"></Link>
+                        <Link to="/upload" className="link" activeClassName="active"></Link>
                         <span className="link-text"> Uploader </span>
                     </div>
                      <div className="link-home">
