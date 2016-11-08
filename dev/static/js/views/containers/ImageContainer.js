@@ -1,24 +1,22 @@
-var React = require('react'),
-    PropTypes = React.PropTypes,
-    constants = require('../../helpers/constants'),
-    ImageTile = require('../components/ImageTile');
+import React from 'react';
+import ImageLibrary from '../components/ImageLibrary';
+import constants from '../../helpers/constants';
+import data from '../../data/images.json';
 
-function RemoveImageEntry (id) {
-   
-};
-
-function RemoveImageFile (name) {
-    
-}
-var ImageContainer = React.createClass({
-    getInitialState: function() {
-        return {
+export default class ImageContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             modified: false,
             data: [],
             isLoading: true
         }
-    },
-    componentDidMount: function () {
+
+        this._isModified = this._isModified.bind(this);
+        this._handleRemove = this._handleRemove.bind(this);
+    }
+
+    componentDidMount() {
         fetch(constants.API_URL + 'images')
         .then(function (response) {
             if(response.status !== 200) {
@@ -37,8 +35,9 @@ var ImageContainer = React.createClass({
         .catch(function (err) {
             console.log(err);
         })
-    },
-    handleRemove: function (event) {
+    }
+
+    _handleRemove(event) {
         //TODO Refactor into modular sections
         fetch(constants.API_URL + 'images/' + event._id, {
             method: 'delete'
@@ -49,10 +48,11 @@ var ImageContainer = React.createClass({
                 method: 'delete'
             })
         }).then(function() {
-            this.Modified(event._id);
+            this._isModified(event._id);
         }.bind(this))
-    },
-    Modified: function (id) {
+    }
+
+    _isModified(id) {
         //optimistically remove image
         var data = this.state.data;
         for(var i = 0; i < data.length; i++) {
@@ -63,12 +63,11 @@ var ImageContainer = React.createClass({
         this.setState({
             data: data
         });
-    },
-    render: function() {
+    }
+
+    render() {
         return (
-            <ImageTile images={this.state.data} handleRemove={this.handleRemove}/>
+            <ImageLibrary images={this.state.data} handleRemove={this.handleRemove}/>
         )
     }
-});
-
-module.exports = ImageContainer;
+};

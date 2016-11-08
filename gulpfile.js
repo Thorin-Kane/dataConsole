@@ -42,7 +42,7 @@ var bundle = function bundle () {
         browserify({
                 entries: ['dev/static/js/index.js']
             })
-            .transform(babelify, {presets: ['react']})
+            .transform(babelify, {presets: ['es2015', 'babel-preset-stage-0','react']})
             .transform(requireGlobify)
             .bundle()
             .pipe(source('index-bundled.js'))

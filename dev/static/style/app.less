@@ -55,13 +55,15 @@ h1, h2, h3, h4, h5, h6, span, a
     right: 0;
     height: @header-height;
     background: @Gray5;
-    // margin: 0 -@margin;
     padding: 0 @margin;
 
     .link-home
     {
+        .flexbox(row);
+        align-items: center;
+        justify-content: center;
         position: relative;
-        width: 150px;
+        min-width: 150px;
         height: 100%;
         background: @Gray5;
 
@@ -78,9 +80,6 @@ h1, h2, h3, h4, h5, h6, span, a
             {
                 .f3;
                 color: @Gray1;
-                position: absolute;
-                top: 30%;
-                left: 20%;
                 z-index: 2;
             }
 

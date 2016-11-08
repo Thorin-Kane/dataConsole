@@ -1,41 +1,19 @@
-var React = require('react'),
-    PropTypes = React.PropTypes;
+import React from 'react';
 
-function ImageTile (props) {
-    var bgImage = {
-        backgroundImage: 'url(' + props.image.url + ')'
+export default class ImageTile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={};
     }
 
-    return(
-        <div className="image-tile">
-            <img className="image-tile-content" src={props.image.url}/>
-            <div className="remove-container">
-                <span id = "remove-icon" className="remove image-tile-remove" onClick={props.handleRemove}> </span>
-            </div>
-        </div>
-    )
-};
-
-function ImageRow (props) {
-    return(
-        <div className="image-tile-row">
-            {props.images.map(function(image, i) {
-                return (
-                   <ImageTile image={image} key={image._id} handleRemove={props.handleRemove.bind(null, image)}/>
-                )
-            })}
-        </div>
-    )
-};
-
-var ImageLibrary = React.createClass({
-    render: function() {
+    render() {
         return (
-            <div>
-                <ImageRow images={this.props.images} handleRemove={this.props.handleRemove}/>
+            <div className="image-tile">
+                <img className="image-tile-content" src={this.props.image}/>
+                <div className="remove-container">
+                    <span id = "remove-icon" className="remove image-tile-remove" onClick={this.props.handleRemove}> </span>
+                </div>
             </div>
-        )
-    }
-});
-
-module.exports = ImageLibrary;
+        );
+   }
+}

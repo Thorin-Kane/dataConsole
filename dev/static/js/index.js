@@ -1,8 +1,8 @@
-var React = require('react'),
-	ReactDOM = require('react-dom'),
-	routes = require('./views/router/routes');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Routes from './views/router/routes';
 
 ReactDOM.render(
-	routes, 
-	document.getElementById('content')
+    <Routes />,
+    document.getElementById('content')
 );
