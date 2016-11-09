@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageLibrary from '../components/ImageLibrary';
+import UploaderContainer from './UploaderContainer';
 import constants from '../../helpers/constants';
-import data from '../../data/images.json';
 
 export default class ImageContainer extends React.Component {
     constructor(props) {
@@ -67,7 +67,10 @@ export default class ImageContainer extends React.Component {
 
     render() {
         return (
-            <ImageLibrary images={this.state.data} handleRemove={this.handleRemove}/>
+            <div className='asset-page'>
+                <ImageLibrary images={this.state.data} handleRemove={this.handleRemove}/>
+                <UploaderContainer />
+            </div>
         )
     }
 };

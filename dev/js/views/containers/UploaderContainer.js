@@ -87,9 +87,13 @@ export default class UploaderContainer extends React.Component {
         });
     }
 
+    _handleCancelUpload() {
+        $('#upload-container').hide();
+    }
+
     render() {
         return(
-            <div className="upload-background">
+            <div id='upload-container' className="upload-background">
                 <div className="upload-container">
                     <div className="upload-content">
                         <a href="/" className="upload-cloud-img"/>
@@ -100,6 +104,7 @@ export default class UploaderContainer extends React.Component {
                             </div>
                             <button className="upload-btn" type="button" onClick={this.handleClick}>Upload File</button>
                             <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this.handleUpload}></input>
+                            <button className='link-button cancel' onClick={this._handleCancelUpload}>cancel</button>
                         </section>
                     </div>
                 </div>

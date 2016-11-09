@@ -25,6 +25,8 @@ body
     .page
     {
         padding-top: @header-height;
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -88,6 +90,29 @@ h1, h2, h3, h4, h5, h6, span, a
                 border-bottom: 3px solid @Blue1;
             }
         }
+    }
+
+    .upload-btn-container
+    {
+        margin-left: auto;
+    }
+
+    .new-upload-btn
+    {
+        .f5;
+        color: @white;
+        -webkit-appearance: none;
+        border: none;
+        width: auto;
+        background: transparent;
+
+         .upload-image
+         {
+            .upload-icon(@white);
+            display: block;
+            width: 40px;
+            height: 40px;
+         }
     }
 }
 
@@ -220,6 +245,7 @@ h1, h2, h3, h4, h5, h6, span, a
    &-background
    {
         position: fixed;
+        display: none;
         top: @header-height;
         left: 0;
         right: 0;
@@ -273,6 +299,17 @@ h1, h2, h3, h4, h5, h6, span, a
         width: 120px;
         background-color: @Gray3;
     }
+
+    .cancel
+    {
+        .button;
+        .f5;
+        color: @Blue1;
+        background: transparent;
+        border: none;
+        text-transform: uppercase;
+    }
+
     .upload-actions
     {
         .flexbox(column);
@@ -314,6 +351,12 @@ h1, h2, h3, h4, h5, h6, span, a
 }
 
 //image library
+.asset-page
+{
+    width: 100%;
+    height: 100%;
+}
+
 .remove
 {
     display: none;

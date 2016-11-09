@@ -10,6 +10,7 @@ export default class Home extends React.Component {
         this.state = {};
 
         this._setItems = this._setItems.bind(this);
+        this._handleNewUpload = this._handleNewUpload.bind(this);
     }
 
     componentWillMount() {
@@ -24,6 +25,10 @@ export default class Home extends React.Component {
 
     componentWillUnmount() {
         this.unsubscribe();
+    }
+
+    _handleNewUpload() {
+        $('#upload-container').show();
     }
 
     render() {
@@ -41,6 +46,11 @@ export default class Home extends React.Component {
                      <div className="link-home">
                         <Link to="/assets" className="link" activeClassName="active"></Link>
                         <span className="link-text"> Asset Library </span>
+                    </div>
+                    <div className='upload-btn-container'>
+                        <button className='new-upload-btn' onClick={this._handleNewUpload}>
+                            <span className='upload-image'></span>
+                        </button>
                     </div>
                 </div>
                 <div className='page'>
