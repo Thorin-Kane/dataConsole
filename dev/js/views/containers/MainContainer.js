@@ -19,8 +19,6 @@ export default class MainContainer extends React.Component {
     }
 
     componentWillMount() {
-        this.store.set('data', data);
-        console.log(this.store);
         this.unsubscribe = this.store.subscribe('data', this._setItems);
 
     }
@@ -41,8 +39,7 @@ export default class MainContainer extends React.Component {
     }
 
     _handleClick(project) {
-        this.store.set('active_project', project);
-        // console.log(project);
+
     }
 
     render() {

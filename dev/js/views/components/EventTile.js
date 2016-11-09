@@ -1,18 +1,23 @@
-var React = require('react'),
-    PropTypes = React.PropTypes;
+import React from 'react';
 
-var Tile = React.createClass({
-    render: function () {
+export default class Tile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
         return (
-            <div className="ev-main-tile">
+            <div className="ev-main-tile" style={{backgroundImage: 'url(/images/' + this.props.event.backgroundImage + ')' }}>
+                <div className='ev-main-tile-scrim'></div>
                <section className=" ev-main-content" >
                     <div className="ev-region-title">
-                        <h3 className="ev ev-date"> {this.props.events.dateStart} </h3>
-                        <h3 className="ev ev-title"> {this.props.events.title} </h3>
+                        <h3 className="ev-date"> {this.props.event.dateStart} </h3>
+                        <h3 className="ev-title"> {this.props.event.title} </h3>
                     </div>
                     <div className="ev-region-location">
-                        <h3 className="ev ev-building"> {this.props.events.building} </h3>
-                        <h3 className="ev ev-room"> {this.props.events.room} </h3>
+                        <h3 className="ev ev-building"> {this.props.event.building} </h3>
+                        <h3 className="ev ev-room"> {this.props.event.room} </h3>
                     </div>
                 </section>
                 <section className="ev-region-footer">
@@ -25,37 +30,5 @@ var Tile = React.createClass({
             </div>
         )
     }
-});
+}
 
-function TileRow (props) {
-    return (
-        <div className="ev-tile-row">
-            {props.group.events.map(function(events, i) { 
-                if (events !== null) {
-                    if(events._id !== null) {
-                        return (
-                            <Tile events={events} key={events._id} handleClick={props.onDelete.bind(null, events)}/> 
-                        )
-                    }
-                }   
-            })}
-        </div>
-    )
-};
-
-var Event = React.createClass({
-    render: function() {
-        return (
-            <div>
-                {this.props.isLoading == true
-                ? <h1> Loading </h1>
-                :
-                <div className="row">
-                    <TileRow group={this.props.group} schema={this.props.schema} onDelete={this.props.onDelete}/>   
-                </div>}
-            </div>
-        )
-    }
-});
-
-module.exports = Event;

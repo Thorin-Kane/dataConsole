@@ -24,7 +24,7 @@ body
 
     .page
     {
-        padding: @header-height @margin @margin;
+        padding-top: @header-height;
     }
 }
 
@@ -91,6 +91,12 @@ h1, h2, h3, h4, h5, h6, span, a
     }
 }
 
+.detail-page
+{
+    width: 100%;
+    height: 100%;
+}
+
 //event tiles
 .ev-tile-row
 {
@@ -101,12 +107,6 @@ h1, h2, h3, h4, h5, h6, span, a
     flex-wrap: wrap;
 }
 
-.ev-container
-{
-    padding: @header-height + 4px 0;
-    overflow-y: auto;
-}
-
 .ev-main-tile
 {
     .flexbox(column);
@@ -114,17 +114,32 @@ h1, h2, h3, h4, h5, h6, span, a
     transition: all .2s ease-in-out;
     justify-content: space-between;
     position: relative;
-    max-width: 400px;
-    height: 300px;
+    max-width: 500px;
+    min-height: 300px;
+    height: 100%;
     padding: @margin;
     background: @Gray1;
     box-shadow: -1px 1px @Gray1;
     border-radius: 4px;
-    margin: @sm-spacing / 4;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 
     &:hover
     {
         .hover;
+    }
+
+    &-scrim
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: @Gray5;
+        opacity: 0.6;
+        z-index: 3;
     }
 }
 
@@ -133,6 +148,7 @@ h1, h2, h3, h4, h5, h6, span, a
     .flexbox(column);
     .flex(0;0;80%);
     justify-content: space-between;
+    z-index: 4;
 }
 .ev-region
 {
@@ -147,11 +163,15 @@ h1, h2, h3, h4, h5, h6, span, a
             &-date
             {
                 .f1;
+                color: #FFFFFF !important;
+
             }
 
             &-title
             {
+                .truncate(2);
                 .f2;
+                color: #FFFFFF !important;
             }
         }
     }
@@ -163,11 +183,13 @@ h1, h2, h3, h4, h5, h6, span, a
             &-building
             {
                 .f35;
+                color: #FFFFFF !important;
             }
 
             &-room
             {
                 .f2;
+                color: #FFFFFF !important;
             }
         }
     }
@@ -177,7 +199,8 @@ h1, h2, h3, h4, h5, h6, span, a
         .flexbox(row);
         height: 24px;
         margin: 0 -@rg-spacing;
-        border-top: 1px solid @Gray3;
+        z-index: 4;
+        border-top: 1px solid #FFFFFF;
 
        .ev-actions
        {
@@ -318,7 +341,7 @@ h1, h2, h3, h4, h5, h6, span, a
 .image-tile
 {
     position: relative;
-    .flex(0;0;33%);
+    .flex(0;0;33.33%);
 
     &-row
     {

@@ -1,24 +1,28 @@
 import React from 'react';
 import State from '../../helpers/state';
+import Tile from '../components/EventTile';
 
-//in real world I need to take url params and query for data from db
 export default class ProjectDetail extends React.Component {
     constructor(props) {
         super(props);
         this.store = State.getInstance();
 
         this.state = {
+            isLoading: true,
             data: {}
         };
+
+        this._setItems = this._setItems.bind(this);
+        this._renderDetailList = this._renderDetailList.bind(this);
     }
 
     componentWillMount() {
-        // console.log(this.store);
-        this.unsubscribe = this.store.subscribe('active_project', this._setItems);
+        console.log(this.store);
+        this.unsubscribe = this.store.subscribe('data', this._setItems);
     }
 
     _setItems() {
-        //on change set new state
+        console.log('set items project detail');
     }
 
     componentWillUnmount() {
@@ -28,18 +32,41 @@ export default class ProjectDetail extends React.Component {
     componentDidMount() {
         const data = this.store.get('data');
 
-        for(var item of data) {
+        for(let item of data) {
             if(item.project_id == this.props.params.project_id) {
-                 this.setState({
+                this.setState({
+                    isLoading: false,
                     data: item
                 });
             }
         }
     }
 
+    _renderDetailList() {
+        // console.log(this.state.data);
+        let details = [];
+
+        this.state.data.data.map((item, i) => {
+            details.push(
+               <Tile event={item} key={item._id} />
+            )
+        });
+
+        return details;
+    }
+
     render() {
         return (
-            <div>Project Detail!</div>
+            <div className='detail-page'>
+            {
+                this.state.isLoading == true
+                ? <h1> Loading... </h1>
+                :
+                <div className='ev-tile-row'>
+                    {this._renderDetailList()}
+                </div>
+            }
+            </div>
         )
     }
 

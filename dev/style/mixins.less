@@ -27,6 +27,18 @@
     order:@prop;
 }
 
+.truncate(@lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: @lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    word-break: break-word;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
 .max-width(@max-width)
 {
     max-width: @max-width;
@@ -128,7 +140,7 @@
     font-size: 18px;
     color: @Gray3;
 
-    &::-webkit-input-placeholder 
+    &::-webkit-input-placeholder
     {
         color: @Gray2;
         font-size: 18px;
