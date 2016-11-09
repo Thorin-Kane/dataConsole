@@ -92,15 +92,15 @@ export default class UploaderContainer extends React.Component {
             <div className="upload-background">
                 <div className="upload-container">
                     <div className="upload-content">
-                            <a href="/" className="upload-cloud-img"/>
-                            <h2>File Uploader</h2>
-                            <section className='upload-actions'>
-                                <div className="progress">
-                                <div className="progress-bar" role="progressbar"></div>
-                                </div>
-                                <button className="upload-btn" type="button" onClick={this.handleClick}>Upload File</button>
-                                <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this.handleUpload}></input>
-                            </section>
+                        <a href="/" className="upload-cloud-img"/>
+                        <h2>File Uploader</h2>
+                        <section className='upload-actions'>
+                            <div className="progress">
+                            <div className="progress-bar" role="progressbar"></div>
+                            </div>
+                            <button className="upload-btn" type="button" onClick={this.handleClick}>Upload File</button>
+                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this.handleUpload}></input>
+                        </section>
                     </div>
                 </div>
             </div>

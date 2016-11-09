@@ -20,7 +20,9 @@ export default class Home extends React.Component {
                         <span className="link-text"> Asset Library </span>
                     </div>
                 </div>
-                {this.props.children}
+                <div className='page'>
+                    {this.props.children}
+                </div>
             </div>
         )
     }
