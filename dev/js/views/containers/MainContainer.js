@@ -3,6 +3,7 @@ import State from '../../helpers/state';
 import data from '../../data/events.json';
 
 import Projects from '../components/Projects';
+import UploaderContainer from './UploaderContainer';
 
 export default class MainContainer extends React.Component {
     constructor(props) {
@@ -45,10 +46,16 @@ export default class MainContainer extends React.Component {
     render() {
         return (
             <div>
-                {this.state.isLoading == true
+            {
+                this.state.isLoading == true
                 ? <h1> Loading...</h1>
                 :
-                <Projects projects={this.state.data} handleClick={this._handleClick}/>}
+                <div className='main-page'>
+                    <Projects projects={this.state.data} handleClick={this._handleClick}/>
+                    <UploaderContainer />
+                </div>
+
+            }
             </div>
         )
     }

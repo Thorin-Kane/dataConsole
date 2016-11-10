@@ -25,6 +25,7 @@ export default class Home extends React.Component {
 
     componentWillUnmount() {
         this.unsubscribe();
+        console.log('header unmounting');
     }
 
     _handleNewUpload() {
@@ -38,10 +39,6 @@ export default class Home extends React.Component {
                     <div className="link-home">
                         <IndexLink to="/" className="link" activeClassName="active"></IndexLink>
                         <span className="link-text"> Home </span>
-                    </div>
-                    <div className="link-home">
-                        <Link to="/upload" className="link" activeClassName="active"></Link>
-                        <span className="link-text"> Uploader </span>
                     </div>
                      <div className="link-home">
                         <Link to="/assets" className="link" activeClassName="active"></Link>

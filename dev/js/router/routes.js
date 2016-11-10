@@ -18,7 +18,6 @@ export default class routes extends React.Component {
             <Router history={browserHistory}>
                 <Route path='/' component={Home}>
                     <IndexRoute component={MainContainer} />
-                    <Route path='/upload' component={UploaderContainer} />
                     <Route path='/assets' component={ImageContainer} />
                     <Route path='/project/:project_id' component={ProjectDetail}/>
                 </Route>
