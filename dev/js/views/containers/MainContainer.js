@@ -45,14 +45,18 @@ export default class MainContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='main-page'>
             {
                 this.state.isLoading == true
                 ? <h1> Loading...</h1>
                 :
-                <div className='main-page'>
-                    <Projects projects={this.state.data} handleClick={this._handleClick}/>
-                    <UploaderContainer />
+                <div className='main-page-container'>
+                    <div className='parallax'></div>
+                    <div className='project-region'>
+                        <Projects projects={this.state.data} handleClick={this._handleClick}/>
+                        <UploaderContainer />
+                    </div>
+                    <div className='parallax'></div>
                 </div>
 
             }
