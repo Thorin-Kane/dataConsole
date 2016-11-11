@@ -33,7 +33,7 @@ export default class Project extends React.Component{
 
     render() {
         return (
-            <div className='project-region'>
+            <div className='project-select-region'>
                 <div className='select-project'>
                     {this._renderDropdown()}
                 </div>

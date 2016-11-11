@@ -11,7 +11,7 @@ exports.add = function(data, cb) {
 exports.remove = function(id, cb) {
     var collection = db.get().collection('imagemodels');
 
-    collection.remove({'_id': new mongo.ObjectID(id)}, {safe:true}, function(err, docs) {
+    collection.remove({'_id': new mongo.ObjectID(id)}, {safe:true}, function (err, docs) {
         cb(err, docs);
     });
 }

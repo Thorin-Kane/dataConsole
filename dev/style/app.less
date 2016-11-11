@@ -418,22 +418,33 @@ h1, h2, h3, h4, h5, h6, span, a
    &-container
    {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    position: relative;
    }
 
     .parallax
     {
-        height: 100%;
+        display: block;
+        min-height: 600px;
         background-image: url('/images/seattle_new.jpg');
         background-attachment: fixed;
-        background-size: 100% 100%;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     .project-region
     {
-        height: 100%;
-        background-color: @Gray5;
+        display: block;
+        height: 600px;
+        background-color: @Gray3;
+        z-index: 98;
+
+        a
+        {
+            color: @Blue1;
+            display: block;
+            text-decoration: none;
+        }
     }
 }
