@@ -18,20 +18,21 @@ export default class UploaderContainer extends React.Component {
 
     _handleClick(e) {
         $('#upload-input').click();
-        $('.progress-bar').text('0%');
-        $('.progess-bar').width('0%');
+        $('.progress').attr('data-progress', 0);
     }
 
     _handleUpload(e) {
         const files = Array.prototype.slice.call(e.target.files);
+        const formData = new FormData();
         let mongoFileObjects = [];
 
         if(files.length > 0) {
-            const formData = new FormData();
+            // const formData = new FormData();
+            // console.log(formData);
 
-            for(var i of files) {
-                const file = files[i];
-                imageFile = new Image(file.name);
+            for(let file of files) {
+                console.log(file);
+                const imageFile = new Image(file.name);
                 mongoFileObjects.push(imageFile);
                 formData.append('uploads[]', file, file.name);
             }
@@ -69,14 +70,7 @@ export default class UploaderContainer extends React.Component {
                 var percentComplete = evt.loaded / evt.total;
                 percentComplete = parseInt(percentComplete * 100);
 
-                // update the Bootstrap progress bar with the new percentage
-                $('.progress-bar').text(percentComplete + '%');
-                $('.progress-bar').width(percentComplete + '%');
-
-                // once the upload reaches 100%, set the progress bar text to done
-                if (percentComplete === 100) {
-                  $('.progress-bar').html('Done');
-                }
+                $('.progress').attr('data-progress', percentComplete);
 
               }
 
@@ -87,6 +81,11 @@ export default class UploaderContainer extends React.Component {
         });
     }
 
+    _testHandleUpload() {
+        for(var i = 0; i <= 100; i++)  {
+            $('.progress').attr('data-progress', i);
+        }
+    }
     _handleCancelUpload() {
         $('#upload-container').hide();
     }
@@ -96,16 +95,22 @@ export default class UploaderContainer extends React.Component {
             <div id='upload-container' className="upload-background">
                 <div className="upload-container">
                     <div className="upload-content">
-                        <a href="/" className="upload-cloud-img"/>
-                        <h2>File Uploader</h2>
+                        <div className="upload-cloud-img" onClick={this._handleClick}></div>
                         <section className='upload-actions'>
-                            <div className="progress">
-                            <div className="progress-bar" role="progressbar"></div>
-                            </div>
-                            <button className="upload-btn" type="button" onClick={this.handleClick}>Upload File</button>
-                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this.handleUpload}></input>
+                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this._testHandleUpload}></input>
                             <button className='link-button cancel' onClick={this._handleCancelUpload}>cancel</button>
                         </section>
+                    </div>
+                    <div className="progress" data-progress="0">
+                        <div className="progress-bar" >
+                            <div className='mask full'>
+                                <div className='fill'></div>
+                            </div>
+                             <div className='mask half'>
+                                <div className='fill'></div>
+                            </div>
+                        </div>
+                        <div className='inset'></div>
                     </div>
                 </div>
             </div>

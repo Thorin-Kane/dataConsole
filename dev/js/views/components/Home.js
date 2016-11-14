@@ -1,7 +1,7 @@
 import React from 'react';
 import State from '../../helpers/state';
 import {IndexLink, Link } from 'react-router';
-import data from '../../data/events.json';
+// import data from '../../data/events.json';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     }
 
     componentWillMount() {
-        this.store.set('data', data);
+        // this.store.set('data', data);
         console.log(this.store);
         this.unsubscribe = this.store.subscribe('data', this._setItems);
     }

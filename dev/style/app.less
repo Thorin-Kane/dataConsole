@@ -1,5 +1,6 @@
 @import "vars";
 @import "mixins";
+@import "uploader";
 
 html
 {
@@ -239,117 +240,6 @@ h1, h2, h3, h4, h5, h6, span, a
     .button;
 }
 
-//uploader
-.upload
-{
-   &-background
-   {
-        position: fixed;
-        display: none;
-        top: @header-height;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.8);
-        z-index: 9999;
-   }
-
-   &-container
-   {
-        .flexbox(row);
-        width: 40vw;
-        height: 40vh;
-        min-width: 300px;
-        min-height: 300px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-   }
-
-   &-cloud-img
-   {
-        pointer-events: none;
-        cursor: default;
-        display: block;
-        width: 120px;
-        height: 120px;
-        background: url('/static/img/ic_backup_black_24px.svg') no-repeat;
-        background-size: 100%;
-   }
-}
-
-.upload-content
-{
-    .flexbox(column);
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    padding: @margin;
-    background: @Gray1;
-    box-shadow: -1px 1px @Gray1;
-    border-radius: 4px;
-    margin: @sm-spacing / 4;
-
-    .upload-btn
-    {
-        .button;
-        width: 120px;
-        background-color: @Gray3;
-    }
-
-    .cancel
-    {
-        .button;
-        .f5;
-        color: @Blue1;
-        background: transparent;
-        border: none;
-        text-transform: uppercase;
-    }
-
-    .upload-actions
-    {
-        .flexbox(column);
-        align-items: center;
-        position: absolute;
-        bottom: 15%;
-        width: 100%;
-    }
-}
-
-#upload-input
-{
-    display: none;
-}
-
-.progress
-{
-    height: 16px;
-    width: 80%;
-    margin-bottom: @rg-spacing;
-    overflow: hidden;
-    background-color: @Gray0;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-
-    &-bar
-    {
-        .f4;
-        font-size: 12px;
-        text-align: center;
-        line-height: 16px;
-        height: 100%;
-        width: 0;
-        background-color: @Blue1;
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-        border-radius: 4px;
-        transition: width .6s ease;
-    }
-}
-
 //image library
 .asset-page
 {
@@ -409,7 +299,6 @@ h1, h2, h3, h4, h5, h6, span, a
 }
 
 //main page
-
 .main-page
 {
     width: 100%;
@@ -417,26 +306,15 @@ h1, h2, h3, h4, h5, h6, span, a
 
    &-container
    {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+        width: 100%;
+        height: 100vh;
+        position: relative;
    }
-
-    .parallax
-    {
-        display: block;
-        min-height: 600px;
-        background-image: url('/images/seattle_new.jpg');
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
 
     .project-region
     {
         display: block;
-        height: 600px;
+        height: 100%;
         background-color: @Gray3;
         z-index: 98;
 

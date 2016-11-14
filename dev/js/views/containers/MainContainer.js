@@ -1,6 +1,6 @@
 import React from 'react';
 import State from '../../helpers/state';
-import data from '../../data/events.json';
+// import data from '../../data/events.json';
 
 import Projects from '../components/Projects';
 import UploaderContainer from './UploaderContainer';
@@ -35,7 +35,7 @@ export default class MainContainer extends React.Component {
     componentDidMount() {
         this.setState({
             isLoading: false,
-            data: this.store.get('data')
+            // data: this.store.get('data')
         });
     }
 
@@ -51,12 +51,10 @@ export default class MainContainer extends React.Component {
                 ? <h1> Loading...</h1>
                 :
                 <div className='main-page-container'>
-                    <div className='parallax'></div>
                     <div className='project-region'>
                         <Projects projects={this.state.data} handleClick={this._handleClick}/>
                         <UploaderContainer />
                     </div>
-                    <div className='parallax'></div>
                 </div>
 
             }
