@@ -3,18 +3,22 @@
 
 html
 {
-    width: 100%;
     height: 100%;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 body
 {
     height: 100%;
-    width: 100%;
     background: @Gray0;
-    margin: 0;
     overflow: auto;
+
+    *,
+    *:after,
+    *:before
+    {
+        .box-sizing;
+    }
 }
 
 //reactroot container
@@ -135,13 +139,12 @@ h1, h2, h3, h4, h5, h6, span, a
 .ev-main-tile
 {
     .flexbox(column);
-    .flex(1;1;auto);
+    .flex(1;1; 33.33%);
     transition: all .2s ease-in-out;
     justify-content: space-between;
     position: relative;
     max-width: 500px;
-    min-height: 300px;
-    height: 100%;
+    height: 400px;
     padding: @margin;
     background: @Gray1;
     box-shadow: -1px 1px @Gray1;
@@ -149,11 +152,6 @@ h1, h2, h3, h4, h5, h6, span, a
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-
-    &:hover
-    {
-        .hover;
-    }
 
     &-scrim
     {
@@ -188,7 +186,7 @@ h1, h2, h3, h4, h5, h6, span, a
             &-date
             {
                 .f1;
-                color: #FFFFFF !important;
+                color: @white !important;
 
             }
 
@@ -196,7 +194,7 @@ h1, h2, h3, h4, h5, h6, span, a
             {
                 .truncate(2);
                 .f2;
-                color: #FFFFFF !important;
+                color: @white !important;
             }
         }
     }
@@ -208,13 +206,13 @@ h1, h2, h3, h4, h5, h6, span, a
             &-building
             {
                 .f35;
-                color: #FFFFFF !important;
+                color: @white !important;
             }
 
             &-room
             {
                 .f2;
-                color: #FFFFFF !important;
+                color: @white !important;
             }
         }
     }
@@ -225,7 +223,7 @@ h1, h2, h3, h4, h5, h6, span, a
         height: 24px;
         margin: 0 -@rg-spacing;
         z-index: 4;
-        border-top: 1px solid #FFFFFF;
+        border-top: 1px solid @white;
 
        .ev-actions
        {
@@ -256,11 +254,6 @@ h1, h2, h3, h4, h5, h6, span, a
 
    &-container
    {
-        .flexbox(row);
-        width: 40vw;
-        height: 40vh;
-        min-width: 300px;
-        min-height: 300px;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -270,28 +263,19 @@ h1, h2, h3, h4, h5, h6, span, a
 
    &-cloud-img
    {
-        pointer-events: none;
-        cursor: default;
-        display: block;
+        .upload-icon(@white);
         width: 120px;
         height: 120px;
-        background: url('/static/img/ic_backup_black_24px.svg') no-repeat;
-        background-size: 100%;
    }
 }
 
 .upload-content
 {
     .flexbox(column);
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    padding: @margin;
-    background: @Gray1;
-    box-shadow: -1px 1px @Gray1;
-    border-radius: 4px;
-    margin: @sm-spacing / 4;
+    min-height: 400px;
+    min-width: 400px;
 
     .upload-btn
     {
@@ -302,21 +286,14 @@ h1, h2, h3, h4, h5, h6, span, a
 
     .cancel
     {
-        .button;
-        .f5;
-        color: @Blue1;
-        background: transparent;
-        border: none;
-        text-transform: uppercase;
+        .link-button;
     }
 
     .upload-actions
     {
         .flexbox(column);
         align-items: center;
-        position: absolute;
-        bottom: 15%;
-        width: 100%;
+        justify-content: space-between;
     }
 }
 
@@ -327,26 +304,27 @@ h1, h2, h3, h4, h5, h6, span, a
 
 .progress
 {
-    height: 16px;
-    width: 80%;
-    margin-bottom: @rg-spacing;
-    overflow: hidden;
-    background-color: @Gray0;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
 
     &-bar
     {
-        .f4;
-        font-size: 12px;
-        text-align: center;
-        line-height: 16px;
+        border: 2px solid @Gray3;
+        border-top: 2px solid @Blue1;
+        border-radius: 50%;
+        width: 100%;
         height: 100%;
-        width: 0;
-        background-color: @Blue1;
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-        border-radius: 4px;
-        transition: width .6s ease;
+
+        animation: spin 2s ease infinite;
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     }
 }
 
@@ -359,10 +337,8 @@ h1, h2, h3, h4, h5, h6, span, a
 
 .remove
 {
+    .close-icon(@white);
     display: none;
-    background-image: url('/static/resources/img/ic_clear_black_24px.svg');
-    background-size: 100%;
-    background-repeat: no-repeat;
 
     &-container
     {
@@ -409,42 +385,34 @@ h1, h2, h3, h4, h5, h6, span, a
 }
 
 //main page
-
 .main-page
 {
     width: 100%;
     height: 100%;
-
-   &-container
-   {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-   }
-
-    .parallax
-    {
-        display: block;
-        min-height: 600px;
-        background-image: url('/images/seattle_new.jpg');
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+    padding: 0 @margin;
 
     .project-region
     {
-        display: block;
-        height: 600px;
-        background-color: @Gray3;
-        z-index: 98;
+
+        .project
+        {
+            .flexbox(row);
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 72px;
+            // border-bottom: 1px solid @Gray3;
+        }
 
         a
         {
-            color: @Blue1;
-            display: block;
+            height: 100%;
+            color: @Gray5;
             text-decoration: none;
         }
+    }
+
+    .project-select-region
+    {
+        display: none;
     }
 }

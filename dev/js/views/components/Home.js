@@ -1,7 +1,7 @@
 import React from 'react';
 import State from '../../helpers/state';
 import {IndexLink, Link } from 'react-router';
-import data from '../../data/events.json';
+import data from '../../starter_data/events.json';
 
 export default class Home extends React.Component {
     constructor(props) {

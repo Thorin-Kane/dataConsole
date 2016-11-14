@@ -24,7 +24,9 @@ export default class Project extends React.Component{
 
         this.props.projects.map((item, i) => {
             projects.push(
-                <Link to={'/project/' + item.project_id} key={item.project_id} onClick={this.props.handleClick.bind(null, item)}> {item.project_name} </Link>
+                <div className='project' key={item.project_id}>
+                    <Link to={'/project/' + item.project_id} onClick={this.props.handleClick.bind(null, item)}> {item.project_name} </Link>
+                </div>
             )
         });
 
@@ -34,9 +36,7 @@ export default class Project extends React.Component{
     render() {
         return (
             <div className='project-select-region'>
-                <div className='select-project'>
                     {this._renderDropdown()}
-                </div>
             </div>
         )
     }

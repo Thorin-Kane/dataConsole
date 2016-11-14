@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "581f967b1f61db9b910a7998",
+    "name": "calendaroct-01.jpg",
+    "url": "/images/calendaroct-01.jpg",
+    "inUse": false,
+    "dateAdded": 1478465146984
+  },
+  {
+    "_id": "581f967b1f61db9b910a7999",
+    "name": "calendaroct-03.png",
+    "url": "/images/calendaroct-03.png",
+    "inUse": false,
+    "dateAdded": 1478465146984
+  },
+  {
+    "_id": "581f967b1f61db9b910a799a",
+    "name": "drawing-after-dark.jpg",
+    "url": "/images/drawing-after-dark.jpg",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  },
+  {
+    "_id": "581f967b1f61db9b910a799b",
+    "name": "peculiar-ux.png",
+    "url": "/images/peculiar-ux.png",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  },
+  {
+    "_id": "581f967b1f61db9b910a799c",
+    "name": "san_francisco_new.jpg",
+    "url": "/images/san_francisco_new.jpg",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  },
+  {
+    "_id": "581f967b1f61db9b910a799d",
+    "name": "seattle_new.jpg",
+    "url": "/images/seattle_new.jpg",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  },
+  {
+    "_id": "581f967b1f61db9b910a799e",
+    "name": "stackhouseTexture.jpg",
+    "url": "/images/stackhouseTexture.jpg",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  },
+  {
+    "_id": "581f967b1f61db9b910a799f",
+    "name": "womenInUx-02.png",
+    "url": "/images/womenInUx-02.png",
+    "inUse": false,
+    "dateAdded": 1478465146985
+  }
+]

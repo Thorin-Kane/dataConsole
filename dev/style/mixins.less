@@ -1,3 +1,10 @@
+.box-sizing(@type: border-box)
+{
+    -webkit-box-sizing: @type;
+    -moz-box-sizing: @type;
+    box-sizing: @type;
+}
+
 .flexbox(@dir)
 {
     display: -webkit-box;
@@ -112,11 +119,27 @@
       font-size: 16px;
       width: 200px;
       height: 36px;
+
+    &:active
+    {
+        outline: none;
+        border: none;
+    }
 }
 
 .button()
 {
     ._button;
+}
+
+.link-button()
+{
+    ._button;
+    .f5;
+    color: @Blue1;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
 }
 
 .link

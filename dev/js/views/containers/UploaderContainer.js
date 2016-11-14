@@ -69,7 +69,6 @@ export default class UploaderContainer extends React.Component {
                 var percentComplete = evt.loaded / evt.total;
                 percentComplete = parseInt(percentComplete * 100);
 
-                // update the Bootstrap progress bar with the new percentage
                 $('.progress-bar').text(percentComplete + '%');
                 $('.progress-bar').width(percentComplete + '%');
 
@@ -96,16 +95,18 @@ export default class UploaderContainer extends React.Component {
             <div id='upload-container' className="upload-background">
                 <div className="upload-container">
                     <div className="upload-content">
-                        <a href="/" className="upload-cloud-img"/>
-                        <h2>File Uploader</h2>
+                        <section className='upload-img-section'>
+                            <div className="upload-cloud-img" onClick={this._handleClick}></div>
+                        </section>
                         <section className='upload-actions'>
-                            <div className="progress">
-                            <div className="progress-bar" role="progressbar"></div>
-                            </div>
-                            <button className="upload-btn" type="button" onClick={this.handleClick}>Upload File</button>
-                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this.handleUpload}></input>
+                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this._handleUpload}></input>
                             <button className='link-button cancel' onClick={this._handleCancelUpload}>cancel</button>
                         </section>
+                    </div>
+                    <div className='upload-progress'>
+                        <div className="progress">
+                            <div className="progress-bar" role="progressbar"></div>
+                        </div>
                     </div>
                 </div>
             </div>

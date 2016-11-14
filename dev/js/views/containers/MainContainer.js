@@ -1,6 +1,6 @@
 import React from 'react';
 import State from '../../helpers/state';
-import data from '../../data/events.json';
+import data from '../../starter_data/events.json';
 
 import Projects from '../components/Projects';
 import UploaderContainer from './UploaderContainer';
@@ -39,7 +39,15 @@ export default class MainContainer extends React.Component {
         });
     }
 
-    _handleClick(project) {
+    _handleClick() {
+        if($('.project-select-region').is(':visible'))
+        {
+            $('.project-select-region').hide();
+        }
+        else
+        {
+            $('.project-select-region').show();
+        }
 
     }
 
@@ -51,12 +59,13 @@ export default class MainContainer extends React.Component {
                 ? <h1> Loading...</h1>
                 :
                 <div className='main-page-container'>
-                    <div className='parallax'></div>
                     <div className='project-region'>
+                        <div className='project-dropdown' onClick={this._handleClick}>
+                            <span className='main-text'> Select A Project </span>
+                        </div>
                         <Projects projects={this.state.data} handleClick={this._handleClick}/>
-                        <UploaderContainer />
                     </div>
-                    <div className='parallax'></div>
+                    <UploaderContainer />
                 </div>
 
             }

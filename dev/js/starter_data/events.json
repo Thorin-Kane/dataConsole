@@ -1,0 +1,166 @@
+[
+    {
+        "project_id": 1,
+        "project_name": "event calendar",
+        "schema": [],
+        "data":
+        [
+            {
+            "backgroundImage": "drawing-after-dark.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "8P",
+            "startTime": "5",
+            "dateStart": "AUG 31, 2016",
+            "title": "Drawing After Dark",
+            "_id": "57b4ca9072e15adc18fbe20c"
+            },
+            {
+            "backgroundImage": "womenInUx-02.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "12",
+            "dateStart": "SEP 7, 2016",
+            "title": "Women in DPUX",
+            "_id": "57bbd70e72e15adc18fbe212"
+            },
+            {
+            "backgroundImage": "stackhouseTexture.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "10:30A",
+            "startTime": "8:30",
+            "dateStart": "AUG 26, 2016",
+            "title": "Creative Mornings",
+            "_id": "57bc784972e15adc18fbe216"
+            },
+            {
+            "backgroundImage": "stackhouseTexture.jpg",
+            "room": "Courtyard",
+            "building": "Van Vorst",
+            "endTime": "2:30P",
+            "startTime": "11:30A",
+            "dateStart": "SEP 7, 2016",
+            "title": "3rd Annual Affinity Group/Employee Network Summer Fair",
+            "_id": "57bc7f3c72e15adc18fbe217"
+            },
+            {
+            "backgroundImage": "drawing-after-dark.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "8P",
+            "startTime": "5",
+            "dateStart": "SEP 28, 2016",
+            "title": "Drawing After Dark",
+            "_id": "57e9630c72e15adc18fbe21c"
+            },
+            {
+            "backgroundImage": "womenInUx-02.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "12",
+            "dateStart": "OCT 5, 2016",
+            "title": "Women in DPUX",
+            "_id": "57e9633972e15adc18fbe21d"
+            },
+            {
+            "backgroundImage": "calendaroct-03.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "10A",
+            "startTime": "8:30",
+            "dateStart": "OCT 21, 2016",
+            "title": "Design Breakfast",
+            "_id": "57e978ee72e15adc18fbe222"
+            },
+            {
+            "backgroundImage": "calendaroct-01.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "9A",
+            "dateStart": "OCT 18, 2016",
+            "title": "Peculiar UX",
+            "_id": "57e9792f72e15adc18fbe224"
+            },
+            {
+            "backgroundImage": "calendaroct-01.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "10:30A",
+            "startTime": "9",
+            "dateStart": "SEP 30, 2016",
+            "title": "Maker Mornings",
+            "_id": "57e9798672e15adc18fbe225"
+            },
+            {
+            "backgroundImage": "peculiar-ux.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "9A",
+            "dateStart": "NOV 15, 2016",
+            "title": "Peculiar UX",
+            "_id": "57fe680c72e15adc18fbe229"
+            },
+            {
+            "backgroundImage": "womenInUx-02.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "9A",
+            "dateStart": "NOV 2, 2016",
+            "title": "Women in DPUX",
+            "_id": "57fe682472e15adc18fbe22a"
+            },
+            {
+            "backgroundImage": "drawing-after-dark.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "8P",
+            "startTime": "5",
+            "dateStart": "OCT 26, 2016",
+            "title": "Drawing After Dark",
+            "_id": "57fe683e72e15adc18fbe22b"
+            },
+            {
+            "backgroundImage": "stackhouseTexture.jpg",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "10A",
+            "startTime": "9",
+            "dateStart": "DEC 9, 2016",
+            "title": "Maker Mornings",
+            "_id": "581d19a172e15adc18fbe22c"
+            },
+            {
+            "backgroundImage": "womenInUx-02.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "12",
+            "dateStart": "DEC 7, 2016",
+            "title": "Women in DPUX",
+            "_id": "581d19e172e15adc18fbe22d"
+            },
+            {
+            "backgroundImage": "peculiar-ux.png",
+            "room": "Triple Door",
+            "building": "Stackhouse",
+            "endTime": "1P",
+            "startTime": "9A",
+            "dateStart": "DEC 20, 2016",
+            "title": "Peculiar UX",
+            "_id": "581d1a0a72e15adc18fbe22e"
+            }
+        ]
+    },
+    {
+      "project_id": 2,
+      "project_name": "fakey fakerson",
+      "schema": [],
+      "data": []
+    }
+]
