@@ -14,7 +14,7 @@ export default class ImageLibrary extends React.Component {
 
         this.props.images.map((item, i) => {
             images.push(
-                <ImageTile key={i} image={item.url} handleRemove={this.props.handleRemove}/>
+                <ImageTile key={i} image={item.url} handleRemove={this.props.handleRemove.bind(null, item)}/>
             )
         });
 

@@ -30,6 +30,7 @@ export default class Home extends React.Component {
 
     _handleNewUpload() {
         $('#upload-container').show();
+        $('.progress-bar').css("-webkit-animation-play-state", "paused");
     }
 
     render() {

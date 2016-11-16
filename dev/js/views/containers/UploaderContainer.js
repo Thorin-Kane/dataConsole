@@ -18,20 +18,18 @@ export default class UploaderContainer extends React.Component {
 
     _handleClick(e) {
         $('#upload-input').click();
-        $('.progress-bar').text('0%');
-        $('.progess-bar').width('0%');
     }
 
     _handleUpload(e) {
-        const files = Array.prototype.slice.call(e.target.files);
+        $('.progress-bar').css("-webkit-animation-play-state", "running");
+        const files = Array.prototype.slice.call(e.target.files),
+            formData = new FormData();
         let mongoFileObjects = [];
 
         if(files.length > 0) {
-            const formData = new FormData();
 
-            for(var i of files) {
-                const file = files[i];
-                imageFile = new Image(file.name);
+            for(let file of files) {
+                let imageFile = new Image(file.name);
                 mongoFileObjects.push(imageFile);
                 formData.append('uploads[]', file, file.name);
             }
@@ -68,14 +66,11 @@ export default class UploaderContainer extends React.Component {
                 // calculate the percentage of upload completed
                 var percentComplete = evt.loaded / evt.total;
                 percentComplete = parseInt(percentComplete * 100);
+                $('.progress').css('border-color', '#64B5F6');
+                //pause the spinner
+                $('.progress-bar').css("-webkit-animation-play-state", "paused");
 
-                $('.progress-bar').text(percentComplete + '%');
-                $('.progress-bar').width(percentComplete + '%');
 
-                // once the upload reaches 100%, set the progress bar text to done
-                if (percentComplete === 100) {
-                  $('.progress-bar').html('Done');
-                }
 
               }
 

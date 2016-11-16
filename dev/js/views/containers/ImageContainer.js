@@ -38,12 +38,14 @@ export default class ImageContainer extends React.Component {
     }
 
     _handleRemove(event) {
-        //TODO Refactor into modular sections
+        console.log(event._id);
+        //delete mongo entry
         fetch(constants.API_URL + 'images/' + event._id, {
             method: 'delete'
         }).then(function (response) {
             return response.status;
         }).then(function (status) {
+            //delete file
             fetch(constants.API_URL + 'upload/' + event.name, {
                 method: 'delete'
             })
@@ -68,7 +70,7 @@ export default class ImageContainer extends React.Component {
     render() {
         return (
             <div className='asset-page'>
-                <ImageLibrary images={this.state.data} handleRemove={this.handleRemove}/>
+                <ImageLibrary images={this.state.data} handleRemove={this._handleRemove}/>
                 <UploaderContainer />
             </div>
         )
