@@ -1,4 +1,5 @@
 import React from 'react';
+import State from '../../helpers/state';
 
 Image = function(name) {
     this.name = name;
@@ -10,10 +11,12 @@ Image = function(name) {
 export default class UploaderContainer extends React.Component {
     constructor(props) {
         super(props);
+        this.store = State.getInstance();
         this.state={};
 
         this._handleClick = this._handleClick.bind(this);
         this._handleUpload = this._handleUpload.bind(this);
+        this._isModified = this._isModified.bind(this);
     }
 
     _handleClick(e) {
@@ -42,7 +45,6 @@ export default class UploaderContainer extends React.Component {
             processData: false,
             contentType: false,
             success: function(){
-              //send another ajax
               console.log(mongoFileObjects);
               $.ajax({
                 url: 'http://localhost:8080/api/v1/images',
@@ -50,11 +52,14 @@ export default class UploaderContainer extends React.Component {
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(mongoFileObjects),
+                success: function(data){
+                    this._isModified(data);
+                }.bind(this),
                 error: function(xhr, status, err) {
                     console.err('An error occured posting image data to mongo ', err.toString());
                 }
-              })
-            },
+              });
+            }.bind(this),
             xhr: function() {
             // create an XMLHttpRequest
             var xhr = new XMLHttpRequest();
@@ -66,12 +71,13 @@ export default class UploaderContainer extends React.Component {
                 // calculate the percentage of upload completed
                 var percentComplete = evt.loaded / evt.total;
                 percentComplete = parseInt(percentComplete * 100);
-                $('.progress').css('border-color', '#64B5F6');
-                //pause the spinner
-                $('.progress-bar').css("-webkit-animation-play-state", "paused");
 
-
-
+                if(percentComplete >= 100) {
+                    // this._isModified(JSON.stringify(mongoFileObjects));
+                    $('.progress-bar').css('border-color', '#64B5F6');
+                    //pause the spinner
+                    $('.progress-bar').css("-webkit-animation-play-state", "paused");
+                }
               }
 
             }, false);
@@ -79,6 +85,20 @@ export default class UploaderContainer extends React.Component {
             return xhr;
             }
         });
+    }
+
+    _isModified(items) {
+        let data = this.store.get('images');
+        console.log(data);
+        if(items.length > 1) {
+            for(let item of items) {
+                data.push(item);
+            }
+        } else {
+            data.push(items);
+        }
+
+        this.store.set('images', data);
     }
 
     _handleCancelUpload() {
