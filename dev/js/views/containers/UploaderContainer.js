@@ -37,28 +37,27 @@ export default class UploaderContainer extends React.Component {
                 formData.append('uploads[]', file, file.name);
             }
         }
-
         $.ajax({
             url: 'http://localhost:8080/api/v1/upload',
             type: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            success: function(){
-              console.log(mongoFileObjects);
-              $.ajax({
-                url: 'http://localhost:8080/api/v1/images',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify(mongoFileObjects),
-                success: function(data){
-                    this._isModified(data);
-                }.bind(this),
-                error: function(xhr, status, err) {
-                    console.err('An error occured posting image data to mongo ', err.toString());
-                }
-              });
+            success: function() {
+                // this._isModified(mongoFileObjects);
+               $.ajax({
+                    url: 'http://localhost:8080/api/v1/images',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(mongoFileObjects),
+                    success: function(data) {
+                        this._isModified(mongoFileObjects);
+                    }.bind(this),
+                    error: function(xhr, status, err) {
+                        console.err('An error occured posting image data to mongo ', err.toString());
+                    }
+                });
             }.bind(this),
             xhr: function() {
             // create an XMLHttpRequest
@@ -73,7 +72,6 @@ export default class UploaderContainer extends React.Component {
                 percentComplete = parseInt(percentComplete * 100);
 
                 if(percentComplete >= 100) {
-                    // this._isModified(JSON.stringify(mongoFileObjects));
                     $('.progress-bar').css('border-color', '#64B5F6');
                     //pause the spinner
                     $('.progress-bar').css("-webkit-animation-play-state", "paused");
@@ -88,14 +86,13 @@ export default class UploaderContainer extends React.Component {
     }
 
     _isModified(items) {
+        // console.log(items);
         let data = this.store.get('images');
         console.log(data);
-        if(items.length > 1) {
+        if(items.length > 0) {
             for(let item of items) {
                 data.push(item);
             }
-        } else {
-            data.push(items);
         }
 
         this.store.set('images', data);
@@ -115,7 +112,6 @@ export default class UploaderContainer extends React.Component {
                         </section>
                         <section className='upload-actions'>
                             <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onChange={this._handleUpload}></input>
-                            <button className='link-button cancel' onClick={this._handleCancelUpload}>cancel</button>
                         </section>
                     </div>
                     <div className='upload-progress'>
@@ -124,6 +120,7 @@ export default class UploaderContainer extends React.Component {
                         </div>
                     </div>
                 </div>
+                <span className='cancel' onClick={this._handleCancelUpload}></span>
             </div>
         )
     }

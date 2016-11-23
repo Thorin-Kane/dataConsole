@@ -9,7 +9,7 @@ export default class ProjectDetail extends React.Component {
 
         this.state = {
             isLoading: true,
-            data: {}
+            project: {}
         };
 
         this._setItems = this._setItems.bind(this);
@@ -36,7 +36,7 @@ export default class ProjectDetail extends React.Component {
             if(item.project_id == this.props.params.project_id) {
                 this.setState({
                     isLoading: false,
-                    data: item
+                    project: item
                 });
             }
         }
@@ -46,7 +46,7 @@ export default class ProjectDetail extends React.Component {
         // console.log(this.state.data);
         let details = [];
 
-        this.state.data.data.map((item, i) => {
+        this.state.project.data.map((item, i) => {
             details.push(
                <Tile event={item} key={item._id} />
             )

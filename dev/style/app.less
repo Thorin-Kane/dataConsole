@@ -131,117 +131,6 @@ h1, h2, h3, h4, h5, h6, span, a
     height: 100%;
 }
 
-//event tiles
-.ev-tile-row
-{
-    .flexbox(row);
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.ev-main-tile
-{
-    .flexbox(column);
-    .flex(1;1; 33.33%);
-    transition: all .2s ease-in-out;
-    justify-content: space-between;
-    position: relative;
-    max-width: 500px;
-    height: 400px;
-    padding: @margin;
-    background: @Gray1;
-    box-shadow: -1px 1px @Gray1;
-    border-radius: 4px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-
-    &-scrim
-    {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: @Gray5;
-        opacity: 0.6;
-        z-index: 3;
-    }
-}
-
-.ev-main-content
-{
-    .flexbox(column);
-    .flex(0;0;80%);
-    justify-content: space-between;
-    z-index: 4;
-}
-.ev-region
-{
-    &-title
-    {
-        margin-bottom: @rg-spacing * 2;
-
-        .ev
-        {
-            margin-bottom: @sm-spacing/2;
-
-            &-date
-            {
-                .f1;
-                color: @white !important;
-
-            }
-
-            &-title
-            {
-                .truncate(2);
-                .f2;
-                color: @white !important;
-            }
-        }
-    }
-
-    &-location
-    {
-        .ev
-        {
-            &-building
-            {
-                .f35;
-                color: @white !important;
-            }
-
-            &-room
-            {
-                .f2;
-                color: @white !important;
-            }
-        }
-    }
-
-    &-footer
-    {
-        .flexbox(row);
-        height: 24px;
-        margin: 0 -@rg-spacing;
-        z-index: 4;
-        border-top: 1px solid @white;
-
-       .ev-actions
-       {
-        display: none;
-       }
-    }
-}
-
-.ev-btn-remove
-{
-    .button;
-}
-
 //uploader
 .upload
 {
@@ -255,6 +144,15 @@ h1, h2, h3, h4, h5, h6, span, a
         bottom: 0;
         background: rgba(0,0,0,0.8);
         z-index: 9999;
+
+        .cancel
+        {
+            .close-icon(@white);
+            .icon-touchable;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
    }
 
    &-container
@@ -263,7 +161,6 @@ h1, h2, h3, h4, h5, h6, span, a
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
    }
 
    &-cloud-img
@@ -289,11 +186,6 @@ h1, h2, h3, h4, h5, h6, span, a
         .button;
         width: 120px;
         background-color: @Gray3;
-    }
-
-    .cancel
-    {
-        .link-button;
     }
 
     .upload-actions

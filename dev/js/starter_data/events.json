@@ -2,7 +2,43 @@
     {
         "project_id": 1,
         "project_name": "event calendar",
-        "schema": [],
+        "schema": [
+            {
+                  "defaultValue": "11/25/16",
+                  "type": "date",
+                  "label": "Start Date",
+                  "field": "startDate",
+                  "_id": "1"
+            },
+            {
+                  "defaultValue": "11/25/16",
+                  "type": "date",
+                  "label": "End Date",
+                  "field": "endDate",
+                  "_id": "2"
+            },
+            {
+                  "defaultValue": "Triple Door",
+                  "type": "text",
+                  "label": "Room",
+                  "field": "room",
+                  "_id": "3"
+            },
+            {
+                  "defaultValue": "Stackhouse",
+                  "type": "text",
+                  "label": "Building",
+                  "field": "building",
+                  "_id": "4"
+            },
+            {
+                  "defaultValue": "Creative Mornings",
+                  "type": "text",
+                  "label": "Title",
+                  "field": "title",
+                  "_id": "5"
+            }
+        ],
         "data":
         [
             {
